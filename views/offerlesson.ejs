@@ -1,0 +1,73 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>SetUp Profile</title>
+    <% include ./utilities/header %>
+
+</head>
+<body>
+  <% include ./utilities/navbar %>
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-4">
+  <form action="/offerlesson" method="post">
+     <input type="hidden" name="coachId" value=<%= userId %>>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">coaching class name</label>
+    <input type="text" class="form-control" name="className" placeholder="e.g. BJJ 101 for beginners">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Max participants</label>
+    <input type="number" class="form-control" name="maxParticipants" placeholder="e.g. max 5">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Location Select</label>
+    <select class="form-control" name="location">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Sport Select</label>
+    <select class="form-control" name="sport">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Coaching Description</label>
+    <textarea class="form-control" name="description" rows="3"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Lesson Duration</label>
+    <input type="text" class="form-control" name="duration" placeholder="name@example.com">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Coaching Price</label>
+    <input type="text" class="form-control" name="price" placeholder="name@example.com">
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg" name="button">Offer Lesson</button>
+</form>
+  </div>
+  <div class="col-md-8">
+    <h1>Current Lessons Offered</h1>
+
+  </div>
+  </div>
+</div>
+</body>
+</html>

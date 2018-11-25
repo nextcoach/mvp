@@ -1,0 +1,114 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>SetUp Profile</title>
+    <% include ./utilities/header %>
+
+</head>
+<body>
+  <% include ./utilities/navbar %>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span>SetUp Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> Technical </h3>
+
+                    <p>
+                        <strong>id</strong>: <%= user._id %><br>
+                        <strong>email</strong>: <%= user.local.email %><br>
+                        <strong>password</strong>: <%= user.local.password %>
+                    </p>
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="well">
+              <h3><span class="fa fa-user"></span> Detail </h3>
+
+                  <p>
+                      <strong>Full Name</strong>: <%= user.fullName %><br>
+                      <strong>Role</strong>: <%= user.role %><br>
+                      <strong>Gender</strong>: <%= user.gender %><br>
+                      <strong>Sports</strong>: <%= user.sport %><br>
+                      <strong>Description</strong>: <%= user.description %><br>
+                      <strong>Location</strong>: <%= user.location %><br>
+
+                  </p>
+
+          </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <form action="/setupProfile" method="post">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" class="form-control" name="fullName" aria-describedby="emailHelp" placeholder="Enter email" value=<%= user.fullName %>>
+          </div>
+
+          <div class="form-group">
+            <label>Role</label>
+            <select class="form-control" name="role" value=<%= user.role %>>
+              <option>Athlete</option>
+              <option>Coach</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Gender</label>
+            <select class="form-control" name="gender" value=<%= user.gender %>>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Intersex</option>
+              <option>Horseshit</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Sports</label>
+            <select class="form-control" name="sport" value=<%= user.sport %>>
+              <option>Boxing</option>
+              <option>BJJ</option>
+              <option>Judo</option>
+              <option>Muay Thai</option>
+              <option>Wrestling</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Description of your personality and sports history</label>
+            <input type="text" class="form-control" name="description"  placeholder="Enter description" value=<%= user.description %>>
+          </div>
+
+          <div class="form-group">
+            <label>Location</label>
+            <select class="form-control" name="location" value=<%= user.location %>>
+              <option>Brussels</option>
+              <option>Berlin</option>
+              <option>Basel</option>
+              <option>Paris</option>
+              <option>Den Haag</option>
+            </select>
+          </div>
+          <input type="hidden" name="userId" value=<%= user._id %> />
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="col-md-2"></div>
+      
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>NextCoach</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <!-- load fontawesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+  <% include ./utilities/navbar %>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>NextCoach</h1>
+        <h2>Find a coach near you</h2>
+
+        <p>Are you a coach or an athlete:</p>
+
+        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Coach</a>
+        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Athlete</a>
+    </div>
+    <div style="text-align: center;">
+      <h3>Check out our locations!</h3>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="image-text-container">
+          <img src="https://via.placeholder.com/350c">
+          <div class="image-text-centered">Berlin</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="image-text-container">
+          <img src="https://via.placeholder.com/350c">
+          <div class="image-text-centered">Bruessel</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="image-text-container">
+          <img src="https://via.placeholder.com/350c">
+          <div class="image-text-centered">Paris</div>
+        </div>
+      </div>
+    </div>
+
+</div>
+</body>
+<style>
+  .image-text-container {
+    position: relative;
+  }
+
+  .image-text-centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+  }
+
+
+</style>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>
