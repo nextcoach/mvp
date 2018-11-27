@@ -80,37 +80,36 @@ module.exports = function(app, passport) {
   // =====================================
 
   app.get('/findcoach', function(req, res) {
-    res.render('findcoach.ejs', {coacheslist : [
-      {name : "coach1", location : "basel", sport: "BJJ", description: "a description of the coach, written by him self personally, to give a image of his work", price : "CHF22 90min"},
-      {name : "coach1", location : "basel", sport: "BJJ", description: "a description of the coach, written by him self personally, to give a image of his work", price : "CHF22 90min"},
-      {name : "coach1", location : "basel", sport: "BJJ", description: "a description of the coach, written by him self personally, to give a image of his work", price : "CHF22 90min"},
-      {name : "coach1", location : "basel", sport: "BJJ", description: "a description of the coach, written by him self personally, to give a image of his work", price : "CHF22 90min"},
-      {name : "coach1", location : "basel", sport: "BJJ", description: "a description of the coach, written by him self personally, to give a image of his work", price : "CHF22 90min"},
-      {name : "coach1", location : "basel", sport: "BJJ", description: "a description of the coach, written by him self personally, to give a image of his work", price : "CHF22 90min"},
-      {name : "coach1", location : "basel", sport: "BJJ", description: "a description of the coach, written by him self personally, to give a image of his work", price : "CHF22 90min"},
-      {name : "coach1", location : "basel", sport: "BJJ", description: "a description of the coach, written by him self personally, to give a image of his work", price : "CHF22 90min"},
-
-    ]})
+    let offers = []
+      coachingOffer.find({}, function(err, docs) {
+        offers = docs
+        console.log(offers);
+        res.render('findcoach.ejs', {coacheslist : offers })
+      })
   })
 
   // =====================================
   // OFFER LESSON ========================
   // =====================================
   app.get('/offerlesson', isLoggedIn, function(req, res){
-    let f = function() {
-      return(
-        coachingOffer.find({course : { coachId : req.user._id }})
-      )
-    }
-  console.log(coachingOffer.find({course : { coachId : req.user._id }}));
-    res.render('offerlesson.ejs', {userId : req.user._id, coachingOffers: []})
+    let offers = []
+      coachingOffer.find({}, function(err, docs) {
+        offers = docs
+        console.log(offers);
+        res.render('offerlesson.ejs' , {userId : req.user._id, coachingOffers: offers})
+      })
   })
 
-  app.post('/offerlesson', isLoggedIn, function(req, res){
-    coachingOffer.findOneAndUpdate({_id: req.body.id}, {course : req.body}, {upsert: true}, function(err, doc){
-      if (err) return res.send(500, { error: err });
-      return res.redirect('/offerlesson');
-    })
+
+
+  app.post('/newOfferlesson', isLoggedIn, function(req, res){
+    var offer = new coachingOffer({course : req.body });
+    // Save the new model instance, passing a callback
+    offer.save(function (err) {
+      if (err) return handleError(err);
+      // saved!
+    });
+    res.redirect('/offerlesson')
   })
 
 }

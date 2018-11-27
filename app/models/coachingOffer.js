@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 // define the schema for our user model
 var coachingOffer = mongoose.Schema({
     course : {
+      title : String,
+      sport : String,
       coachId : String,
       courseDescription : String,
       location : String,
