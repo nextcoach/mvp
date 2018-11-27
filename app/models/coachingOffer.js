@@ -14,7 +14,7 @@ var coachingOffer = mongoose.Schema({
       price : String,
       maxParticipants : Number,
     },
-    Bookings : String
+    bookings : Object
 });
 
 // create the model for users and expose it to our app

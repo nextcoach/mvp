@@ -15,6 +15,10 @@ function getAllLocations() {
   })
   return retList
 }
+
+function newBooking(user) {
+  return(user)
+}
 module.exports = function(app, passport) {
 
     // =====================================
@@ -98,8 +102,12 @@ module.exports = function(app, passport) {
       })
 
       app.post('/applyForCoaching', function(req, res) {
-        let user = req.user
-        console.log({coach : user, applycation : req.body})
+        let r = req.body
+        let offers = []
+        coachingOffer.findOneAndUpdate({_id : r._id} ,{$set: {bookings : req.user}}, function(err){
+          if(err){console.log(err)}
+        });
+          res.redirect('/findcoach')
       })
 
   // =====================================
@@ -108,14 +116,19 @@ module.exports = function(app, passport) {
   app.get('/offerlesson', isLoggedIn, function(req, res){
     let offers = []
       coachingOffer.find({}, function(err, docs) {
-        offers = docs
-        console.log(offers);
+        let l = []
+        docs.forEach(function(doc) {
+          if(doc.course.coachId == req.user._id) {
+            l.push(doc)
+          }
+        })
+        offers = l
         res.render('offerlesson.ejs' , {userId : req.user._id, coachingOffers: offers})
       })
   })
 
   app.get('/getAllLocations', function(req, res){
-    console.log('?FDDFSDDf');
+    console.log('?getAllLocations');
     console.log(getAllLocations());
   })
 
