@@ -84,7 +84,11 @@
         </div>
         <div class="col-md-4">
           <b>Price per Lesson:</b> <%= coach.course.price %> <br/>
-          <button class="btn btn-primary">Book Coach</button>
+          <form class="" action="/applyForCoaching" method="post">
+            <input type="hidden" name="courseId" value=<%= coach._id %> />
+
+            <button class="btn btn-primary" type="submit">Book Coach</button>
+          </form>
         </div>
       </div>
     <% }) %>

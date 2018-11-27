@@ -3,6 +3,18 @@ var mongoose = require('mongoose');
 var user = require('./models/user')
 var coachingOffer = require('./models/coachingOffer')
 
+
+function getAllLocations() {
+  let retList = []
+  user.find({}, function(err, docs){
+    docs.forEach(function(doc){
+      console.log('pushing location');
+      console.log(doc.location);
+      retList.push(doc.location)
+    })
+  })
+  return retList
+}
 module.exports = function(app, passport) {
 
     // =====================================
@@ -62,7 +74,6 @@ module.exports = function(app, passport) {
         if (err) return res.send(500, { error: err });
         return res.redirect('/profile');
       });
-
     });
 
     // =====================================
@@ -73,20 +84,23 @@ module.exports = function(app, passport) {
         res.redirect('/');
     });
 
+    // =====================================
+    // FIND COACHES ========================
+    // =====================================
 
-
-  // =====================================
-  // FIND COACHES ========================
-  // =====================================
-
-  app.get('/findcoach', function(req, res) {
-    let offers = []
-      coachingOffer.find({}, function(err, docs) {
-        offers = docs
-        console.log(offers);
-        res.render('findcoach.ejs', {coacheslist : offers })
+    app.get('/findcoach', function(req, res) {
+      let offers = []
+        coachingOffer.find({}, function(err, docs) {
+          offers = docs
+          console.log(offers);
+          res.render('findcoach.ejs', {coacheslist : offers })
+        })
       })
-  })
+
+      app.post('/applyForCoaching', function(req, res) {
+        let user = req.user
+        console.log({coach : user, applycation : req.body})
+      })
 
   // =====================================
   // OFFER LESSON ========================
@@ -98,6 +112,11 @@ module.exports = function(app, passport) {
         console.log(offers);
         res.render('offerlesson.ejs' , {userId : req.user._id, coachingOffers: offers})
       })
+  })
+
+  app.get('/getAllLocations', function(req, res){
+    console.log('?FDDFSDDf');
+    console.log(getAllLocations());
   })
 
 
